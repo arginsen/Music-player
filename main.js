@@ -1,5 +1,5 @@
-// Select all the elements in the HTML page 
-// and assign them to a variable 
+// 定位文档中标签元素 
+// 将选中的元素节点赋给变量 
 let now_playing = document.querySelector(".now-playing");
 let track_art = document.querySelector(".track-art");
 let track_name = document.querySelector(".track-name");
@@ -14,12 +14,12 @@ let volume_slider = document.querySelector(".volume_slider");
 let curr_time = document.querySelector(".current-time");
 let total_duration = document.querySelector(".total-duration");
 
-// Specify globally used values 
+// 指定全局变量 
 let track_index = 0;
 let isPlaying = false;
 let updateTimer;
 
-// Create the audio element for the player 
+// 创建 audio 标签元素
 let curr_track = document.createElement('audio');
 
 // 传入一个数组，包含所有歌的所有信息 
@@ -105,34 +105,33 @@ let track_list = [
 ];
 
 
-
+// 定义歌曲加载函数
 function loadTrack(track_index) {
-    // Clear the previous seek timer 
+    // 重置前一首
     clearInterval(updateTimer);
     resetValues();
 
-    // Load a new track 
+    // 加载新的轨道，利用 track_index 定位歌曲，在通过 path 获取路径
     curr_track.src = track_list[track_index].path;
-    curr_track.load();
+    curr_track.load();	// audio 自带的方法
 
-    // Update details of the track 
+    // 切换一首歌曲，更新其显示信息，封面/歌名/歌手
     track_art.style.backgroundImage = "url(" + track_list[track_index].image + ")";
     track_name.textContent = track_list[track_index].name;
     track_artist.textContent = track_list[track_index].artist;
     now_playing.textContent = "PLAYING " + (track_index + 1) + " OF " + track_list.length;
 
-    // Set an interval of 1000 milliseconds 
-    // for updating the seek slider 
+    // 设定滑块跟着播放进度来移动，每隔 1000 毫秒更新
     updateTimer = setInterval(seekUpdate, 1000);
 
-    // Move to the next track if the current finishes playing 
-    // using the 'ended' event 
+    // 添加一个事件侦听器，播放结束时，执行 nextTrack 函数
     curr_track.addEventListener("ended", nextTrack);
 
-    // Apply a random background color 
+    // 切换同时更新背景 
     random_bg_color();
 }
 
+// 定义生成随机色背景函数
 function random_bg_color() {
     // Get a random number between 64 to 256 
     // (for getting lighter colors) 
@@ -140,14 +139,15 @@ function random_bg_color() {
     let green = Math.floor(Math.random() * 256) + 64;
     let blue = Math.floor(Math.random() * 256) + 64;
 
-    // Construct a color withe the given values 
+    // Construct a color with the given values 
     let bgColor = "rgb(" + red + ", " + green + ", " + blue + ")"; 
 
     // Set the background to the new color 
     document.body.style.background = bgColor;
 }
 
-// Functiom to reset all values to their default 
+
+// 定义歌曲重置参数的函数
 function resetValues() {
     curr_time.textContent = "00:00";
     total_duration.textContent = "00:00";
@@ -155,35 +155,37 @@ function resetValues() {
 }
 
 
-
+// 定义播放暂停键函数
 function playpauseTrack() {
-    // Switch between playing and pausing 
-    // depending on the current state 
+	// 判断当前状态，默认 true 播放，false 暂停
     if (!isPlaying) playTrack();
     else pauseTrack();
 }
 
+// 定义播放函数
 function playTrack() {
-    // Play the loaded track 
+    // 生成的 audio 元素执行 play() 方法
     curr_track.play();
     isPlaying = true;
 
-    // Replace icon with the pause icon 
+    // 此时为播放状态，改变按钮图标为暂停，表示当前正在播放
     playpause_btn.innerHTML = '<i class="fa fa-pause-circle fa-5x"></i>';
 }
 
+// 定义暂停函数
 function pauseTrack() {
-    // Pause the loaded track 
+    // 生成的 audio 元素执行 pause() 方法
     curr_track.pause();
     isPlaying = false;
 
-    // Replace icon with the play icon 
+    // 此时为暂停状态，改变按钮图标为播放，表示点击后播放歌曲
     playpause_btn.innerHTML = '<i class="fa fa-play-circle fa-5x"></i>';;
 }
 
+// 定义播放下一首函数
 function nextTrack() {
-    // Go back to the first track if the 
-    // current one is the last in the track list 
+    // 判断当前播放为第几首，如果当前索引没超出总歌曲数，那么索引递增 1
+	// 如果是最后一首，设定 track_index 为 0
     if (track_index < track_list.length - 1)
         track_index += 1;
     else track_index = 0;
@@ -193,9 +195,10 @@ function nextTrack() {
     playTrack();
 }
 
+// 定义播放上一首函数
 function prevTrack() {
-    // Go back to the last track if the 
-    // current one is the first in the track list 
+    // 判断当前播放为第几首，如果当前索引大于 0，也就是不为第一首时，递减 1
+    // 如果是第一首（索引为 0，那么就跳转到最后一首，）
     if (track_index > 0)
         track_index -= 1;
     else track_index = track_list.length;
@@ -206,38 +209,36 @@ function prevTrack() {
 }
 
 
-
+// 定义一个播放定位函数
 function seekTo() {
-    // Calculate the seek position by the 
-    // percentage of the seek slider  
-    // and get the relative duration to the track 
+    // 滑块的值的百分比乘总的持续时间表示当前当前播放进度
     seekto = curr_track.duration * (seek_slider.value / 100);
-
-    // Set the current track position to the calculated seek position 
     curr_track.currentTime = seekto;
 }
 
+// 定义一个音量设定函数
 function setVolume() {
-    // Set the volume according to the 
-    // percentage of the volume slider set 
+    // 根据音量滑块百分比来设定当前的音量 
     curr_track.volume = volume_slider.value / 100;
 }
 
+// 定义设定进度跳转的函数
 function seekUpdate() {
     let seekPosition = 0;
 
-    // Check if the current track duration is a legible number 
+    // 检查当前歌曲时间是不是一个有效数值
+	// 如果是则按百分位置比时长计算当前位置
     if (!isNaN(curr_track.duration)) {
         seekPosition = curr_track.currentTime * (100 / curr_track.duration);
         seek_slider.value = seekPosition;
 
-        // Calculate the time left and the total duration 
+        // 转化播放的时长和总时长，显示成 00:00 样式
         let currentMinutes = Math.floor(curr_track.currentTime / 60);
         let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
         let durationMinutes = Math.floor(curr_track.duration / 60);
         let durationSeconds = Math.floor(curr_track.duration - durationMinutes * 60);
 
-        // Add a zero to the single digit time values 
+        // 设定页面进度的显示样式，不够十位的补个 0
         if (currentSeconds < 10) {
             currentSeconds = "0" + currentSeconds;
         }
@@ -251,7 +252,7 @@ function seekUpdate() {
             durationMinutes = "0" + durationMinutes;
         }
 
-        // Display the updated duration 
+        // 展示当前的进度时长和总时长，00:00 形式
         curr_time.textContent = currentMinutes + ":" + currentSeconds;
         total_duration.textContent = durationMinutes + ":" + durationSeconds;
     }
@@ -259,5 +260,5 @@ function seekUpdate() {
 
 
 
-// Load the first track in the tracklist 
+// 加载第一首曲子，函数变量会被提前，每次进入页面时曲子索引都为初始设定的 0
 loadTrack(track_index);

@@ -5,16 +5,14 @@
     <meta charset="utf-8">
     <title>草东没有派对</title>
     <link rel="icon" href="./image/favicon.ico">
-    <!-- Load FontAwesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <!-- Load the custom CSS style file -->
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
     <div class="player">
 
-        <!-- Define the section for displaying details -->
+        <!-- 设定播放曲目详情 -->
         <div class="details">
             <div class="now-playing">PLAYING x OF y</div>
             <div class="track-art"></div>
@@ -22,7 +20,7 @@
             <div class="track-artist">Track Artist</div>
         </div>
 
-        <!-- Define the section for displaying track buttons -->
+        <!-- 设定播放按钮 -->
         <div class="buttons">
             <div class="prev-track" onclick="prevTrack()">
                 <i class="fa fa-step-backward fa-2x"></i>
@@ -35,14 +33,14 @@
             </div>
         </div>
 
-        <!-- Define the section for displaying the seek slider-->
+        <!-- 设定进度调节滑块-->
         <div class="slider_container">
             <div class="current-time">00:00</div>
             <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
             <div class="total-duration">00:00</div>
         </div>
 
-        <!-- Define the section for displaying the volume slider-->
+        <!-- 设定音量调节滑块-->
         <div class="slider_container">
             <i class="fa fa-volume-down"></i>
             <input type="range" min="1" max="100" value="99" class="volume_slider" onchange="setVolume()">
@@ -50,7 +48,6 @@
         </div>
     </div>
 
-    <!-- Load the main script for the player -->
     <script src="main.js"></script>
 </body>
 
