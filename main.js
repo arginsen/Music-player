@@ -28,79 +28,79 @@ let track_list = [
         name: "intro",
         artist: "草东没有派对",
         image: "image/chounuer.jpg",
-        path: "music/intro.mp3",
+        path: "music/1-intro.mp3",
     },
     {
         name: "丑",
         artist: "草东没有派对",
         image: "image/chounuer.jpg",
-        path: "music/丑.mp3",
+        path: "music/2-chou.mp3",
     },
     {
         name: "烂泥",
         artist: "草东没有派对",
         image: "image/chounuer.jpg",
-        path: "music/烂泥.mp3",
+        path: "music/3-lanni.mp3",
     },
     {
         name: "勇敢的人",
         artist: "草东没有派对",
         image: "image/chounuer.jpg",
-        path: "music/勇敢的人.mp3",
+        path: "music/4-yongganderen.mp3",
     },
     {
         name: "大风吹",
         artist: "草东没有派对",
         image: "image/chounuer.jpg",
-        path: "music/大风吹.mp3"
+        path: "music/5-dafengchui.mp3"
     },
     {
         name: "埃玛",
         artist: "草东没有派对",
         image: "image/chounuer.jpg",
-        path: "music/埃玛.mp3",
+        path: "music/6-aima.mp3",
     },
     {
         name: "等",
         artist: "草东没有派对",
         image: "image/chounuer.jpg",
-        path: "music/等.mp3",
+        path: "music/7-deng.mp3",
     },
     {
         name: "鬼",
         artist: "草东没有派对",
         image: "image/chounuer.jpg",
-        path: "music/鬼.mp3",
+        path: "music/8-gui.mp3",
     },
     {
         name: "在",
         artist: "草东没有派对",
         image: "image/chounuer.jpg",
-        path: "music/在.mp3",
+        path: "music/9-zai.mp3",
     },
     {
         name: "山海",
         artist: "草东没有派对",
         image: "image/chounuer.jpg",
-        path: "music/山海.mp3"
+        path: "music/10-shanhai.mp3"
     },
     {
         name: "我们",
         artist: "草东没有派对",
         image: "image/chounuer.jpg",
-        path: "music/我们.mp3",
+        path: "music/11-women.mp3",
     },
     {
         name: "情歌",
         artist: "草东没有派对",
         image: "image/chounuer.jpg",
-        path: "music/情歌.mp3",
+        path: "music/12-qingge.mp3",
     },
     {
         name: "顶楼",
         artist: "草东没有派对",
         image: "image/chounuer.jpg",
-        path: "music/顶楼.mp3",
+        path: "music/13-dinglou.mp3",
     },
 ];
 
