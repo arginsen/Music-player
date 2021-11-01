@@ -26,84 +26,114 @@ let curr_track = document.createElement('audio');
 let track_list = [
     {
         name: "intro",
-        artist: "草东没有派对",
+        artist: "草東沒有派對",
         image: "image/chounuer.jpg",
         path: "music/1-intro.mp3",
     },
     {
         name: "丑",
-        artist: "草东没有派对",
+        artist: "草東沒有派對",
         image: "image/chounuer.jpg",
         path: "music/2-chou.mp3",
     },
     {
-        name: "烂泥",
-        artist: "草东没有派对",
+        name: "爛泥",
+        artist: "草東沒有派對",
         image: "image/chounuer.jpg",
         path: "music/3-lanni.mp3",
     },
     {
         name: "勇敢的人",
-        artist: "草东没有派对",
+        artist: "草東沒有派對",
         image: "image/chounuer.jpg",
         path: "music/4-yongganderen.mp3",
     },
     {
-        name: "大风吹",
-        artist: "草东没有派对",
+        name: "大風吹",
+        artist: "草東沒有派對",
         image: "image/chounuer.jpg",
         path: "music/5-dafengchui.mp3"
     },
     {
-        name: "埃玛",
-        artist: "草东没有派对",
+        name: "埃瑪",
+        artist: "草東沒有派對",
         image: "image/chounuer.jpg",
         path: "music/6-aima.mp3",
     },
     {
         name: "等",
-        artist: "草东没有派对",
+        artist: "草東沒有派對",
         image: "image/chounuer.jpg",
         path: "music/7-deng.mp3",
     },
     {
         name: "鬼",
-        artist: "草东没有派对",
+        artist: "草東沒有派對",
         image: "image/chounuer.jpg",
         path: "music/8-gui.mp3",
     },
     {
         name: "在",
-        artist: "草东没有派对",
+        artist: "草東沒有派對",
         image: "image/chounuer.jpg",
         path: "music/9-zai.mp3",
     },
     {
         name: "山海",
-        artist: "草东没有派对",
+        artist: "草東沒有派對",
         image: "image/chounuer.jpg",
         path: "music/10-shanhai.mp3"
     },
     {
-        name: "我们",
-        artist: "草东没有派对",
+        name: "我們",
+        artist: "草東沒有派對",
         image: "image/chounuer.jpg",
         path: "music/11-women.mp3",
     },
     {
         name: "情歌",
-        artist: "草东没有派对",
+        artist: "草東沒有派對",
         image: "image/chounuer.jpg",
         path: "music/12-qingge.mp3",
     },
     {
-        name: "顶楼",
-        artist: "草东没有派对",
+        name: "頂樓",
+        artist: "草東沒有派對",
         image: "image/chounuer.jpg",
         path: "music/13-dinglou.mp3",
     },
+    {
+        name: "如常",
+        artist: "草東沒有派對",
+        image: "image/ruchang.jpg",
+        path: "music/1-ruchang.m4a",
+    },
 ];
 
+// 判断机型
+let os = function () {
+    let ua = navigator.userAgent;
+    let isAndroid = /(?:Android)/.test(ua);
+    let isTablet = /(?:iPad|PlayBook)/.test(ua) || (isAndroid && !/(?:Mobile)/.test(ua));
+    let isPhone = /(?:iPhone)/.test(ua) && !isTablet;
+    let isPc = !isPhone && !isAndroid;
+    return {
+        isTablet,
+        isPhone,
+        isPc
+    };
+}()
+
+let docStyle = document.body.parentElement.style
+console.log(document)
+// 适配页面
+if (os.isTablet) {
+    docStyle.fontSize = '12px'
+} else if (os.isPc) {
+    docStyle.fontSize = '7px'
+} else {
+    docStyle.fontSize = '15px'
+}
 
 // 定义歌曲加载函数
 function loadTrack(track_index) {

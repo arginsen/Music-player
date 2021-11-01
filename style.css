@@ -1,32 +1,36 @@
-body {
-    background-color: lightgreen;
+html {
+    height: 100%;
+    font-size: 15px;
+}
 
+body {
     /* Smoothly transition the background color */
+    position: relative;
+    height: 100%;
+    overflow-y: hidden;
     transition: background-color 1s;
 }
 
 /* Using flex with the column direction to 
    align items in a vertical direction */
 .player {
-    height: 95vh;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
 }
 
 .details {
-    display: flex;
+    text-align: center;
+    display: block;
     align-items: center;
-    flex-direction: column;
     justify-content: center;
-    margin-top: 25px;
 }
 
 .track-art {
-    margin: 25px;
-    height: 300px;
-    width: 300px;
+    margin: 2% auto;
+    height: 53rem;
+    width: 53rem;
     background-image: URL("https://source.unsplash.com/Qrspubmx6kE/640x360");
     background-size: cover;
     background-position: center;
@@ -35,29 +39,33 @@ body {
 
 /* Changing the font sizes to suitable ones */
 .now-playing {
-    font-size: 1rem;
+    font-size: 3rem;
+    line-height: 1.5;
 }
 
 .track-name {
-    font-size: 3rem;
+    font-size: 9rem;
 }
 
 .track-artist {
-    font-size: 1.2rem;
+    font-size: 2.2rem;
+    margin-top: 1rem;
 }
 
 /* Using flex with the row direction to 
    align items in a horizontal direction */
 .buttons {
+    font-size: 2.2rem;
     display: flex;
-    flex-direction: row;
+    justify-content: center;
     align-items: center;
+    margin: 3% auto 1%;
 }
 
 .playpause-track,
 .prev-track,
 .next-track {
-    padding: 25px;
+    padding: 2rem 3rem;
     opacity: 0.8;
 
     /* Smoothly transition the opacity */
@@ -73,11 +81,13 @@ body {
 
 /* Define the slider width so that it scales properly */
 .slider_container {
-    width: 75%;
-    max-width: 400px;
+    font-size: 2.2rem;
+    width: 100%;
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 1rem;
 }
 
 /* Modify the appearance of the slider */
@@ -86,7 +96,7 @@ body {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    height: 5px;
+    height: .7rem;
     background: black;
     opacity: 0.7;
     -webkit-transition: .2s;
@@ -117,7 +127,7 @@ body {
 }
 
 .volume_slider {
-    width: 30%;
+    width: 40%;
 }
 
 .current-time,
